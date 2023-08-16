@@ -1,0 +1,7 @@
+.header {
+  display: flex;
+  max-width: 880px;
+  width: 100%;
+  /* где 2 * var(--margin-side) = 400px сумма боковых отступов */
+  border-bottom: 1px solid var(--color-grey);
+}
