@@ -1,7 +1,6 @@
-.profile__info_about-you {
-  max-width: 350px;
+.footer__copyright {
   margin: 0;
-  color: var(--color-white, #fff);
+  color: var(--color-grey, #545454);
   font-size: 18px;
   font-style: normal;
   font-weight: 400;

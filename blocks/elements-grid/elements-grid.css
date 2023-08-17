@@ -1,7 +1,6 @@
-.profile {
-  display: flex;
+.elements-grid {
   max-width: 880px;
   width: 100%;
   align-items: center;
-  margin: 0 auto 47px;
+  margin: 0 auto;
 }
