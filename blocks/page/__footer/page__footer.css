@@ -4,6 +4,6 @@
 
 @media (max-width: 768px) {
     .page__footer {
-        padding: 0 auto 36px;
+        margin: 0 auto 36px;
     }
 }

@@ -1,9 +1,9 @@
 .page__header {
-  margin: 25px auto 0;
+  margin: 45px auto 0;
 }
 
 @media (max-width: 768px) {
-  .page__footer {
-      padding: 28px auto 0;
+  .page__header {
+      margin: 28px auto 0;
   }
 }
