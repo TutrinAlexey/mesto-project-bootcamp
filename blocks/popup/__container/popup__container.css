@@ -5,3 +5,9 @@
   padding: 34px 36px 37px 36px;
   position: relative;
 }
+
+@media (max-width: 768px) {
+  .popup__container {
+    padding: 25px 22px;
+  }
+}

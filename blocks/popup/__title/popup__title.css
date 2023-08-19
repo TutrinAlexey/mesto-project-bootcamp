@@ -8,3 +8,14 @@
   font-weight: 900;
   line-height: normal;
 }
+
+@media (max-width: 768px) {
+  .popup__title {
+    padding-bottom: 75px;
+    max-width: 238px;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+  }
+}

@@ -2,3 +2,10 @@
     width: 100%;
     margin: 36px auto 67px;
 }
+
+@media (max-width: 768px) {
+    .content {
+      margin: 38px auto 48px;
+    }
+  }
+  

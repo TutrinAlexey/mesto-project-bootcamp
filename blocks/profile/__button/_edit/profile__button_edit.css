@@ -2,9 +2,9 @@
   width: 24px;
   height: 24px;
   padding: 0;
-  background-image: url(../../../../images/profile-edit-button.svg);
-  background-repeat: no-repeat;
   background-color: var(--color-black, #000);
+  background-image: url(../../../../images/profile-edit-button.svg);
+  background-size: contain;
   border: 0;
   transition: opacity 0.3s ease-in-out;
 }
@@ -12,4 +12,11 @@
 .profile__button_edit:hover {
   cursor: pointer;
   opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .profile__button_edit {
+    width: 18px;
+    height: 18px;
+  }
 }

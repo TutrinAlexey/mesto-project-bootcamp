@@ -3,3 +3,9 @@
     align-items: baseline;
     gap: 18px;
 }
+
+@media (max-width: 768px) {
+    .profile__info_container {
+        gap: 10px;
+    }
+}

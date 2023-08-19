@@ -7,3 +7,14 @@
   font-weight: 400;
   line-height: normal;
 }
+
+@media (max-width: 768px) {
+  .profile__info_about-you {
+    max-width: 282px;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}

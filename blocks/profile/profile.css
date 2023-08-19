@@ -5,3 +5,15 @@
   align-items: center;
   margin: 0 auto 47px;
 }
+
+@media (max-width: 915px) {
+  .profile {
+    width: calc(100% - 38px);
+  }
+}
+
+@media (max-width: 768px) {
+  .profile {
+    flex-direction: column;
+  }
+}
