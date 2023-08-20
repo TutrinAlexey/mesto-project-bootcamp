@@ -1,4 +1,4 @@
-.profile__info_name {
+.profile__name {
   max-width: 350px;
   margin: 0;
   color: var(--color-white, #fff);
@@ -6,18 +6,16 @@
   font-style: normal;
   font-weight: 500;
   line-height: 48px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media (max-width: 768px) {
-  .profile__info_name {
+  .profile__name {
     max-width: 250px;
     text-align: center;
     font-size: 27px;
-    font-style: normal;
-    font-weight: 500;
     line-height: normal;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
   }
 }

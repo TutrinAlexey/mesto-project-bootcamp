@@ -1,4 +1,4 @@
-.profile__info_about-you {
+.profile__about-you {
   max-width: 350px;
   margin: 0;
   color: var(--color-white, #fff);
@@ -6,15 +6,15 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media (max-width: 768px) {
-  .profile__info_about-you {
+  .profile__about-you {
     max-width: 282px;
     text-align: center;
     font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
   }
 }

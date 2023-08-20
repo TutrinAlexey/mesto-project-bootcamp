@@ -1,11 +1,10 @@
 .content {
-    width: 100%;
-    margin: 36px auto 67px;
+  width: 100%;
+  margin: 36px auto 67px;
 }
 
 @media (max-width: 768px) {
-    .content {
-      margin: 38px auto 48px;
-    }
+  .content {
+    margin: 42px auto 48px;
   }
-  
+}
