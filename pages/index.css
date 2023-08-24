@@ -27,6 +27,7 @@
 @import url(../blocks/elements-grid/__container/elements-grid__container.css);
 
 @import url(../blocks/element/element.css);
+@import url(../blocks/element/__delete-button/element__delete-button.css);
 @import url(../blocks/element/__img/element__img.css);
 @import url(../blocks/element/__bottom/element__bottom.css);
 @import url(../blocks/element/__header/element__header.css);

@@ -36,96 +36,13 @@
           ></button>
         </section>
         <section class="elements-grid">
-          <ul class="elements-grid__container">
-            <li class="element">
-              <img
-                src="images/karachaevsk.jpg"
-                alt="Карачаевск"
-                class="element__img"
-              />
-              <div class="element__bottom">
-                <h2 class="element__header">Карачаевск</h2>
-                <button
-                  type="button"
-                  class="element__like-button"
-                  aria-label="Поставить лайк"
-                ></button>
-              </div>
-            </li>
-            <li class="element">
-              <img
-                src="images/elbrus-mountain.png"
-                alt="Гора Эльбрус"
-                class="element__img"
-              />
-              <div class="element__bottom">
-                <h2 class="element__header">Гора Эльбрус</h2>
-                <button
-                  type="button"
-                  class="element__like-button"
-                  aria-label="Поставить лайк"
-                ></button>
-              </div>
-            </li>
-            <li class="element">
-              <img src="images/dombai.png" alt="Домбай" class="element__img" />
-              <div class="element__bottom">
-                <h2 class="element__header">Домбай</h2>
-                <button
-                  type="button"
-                  class="element__like-button"
-                  aria-label="Поставить лайк"
-                ></button>
-              </div>
-            </li>
-            <li class="element">
-              <img
-                src="images/elbrus-mountain.png"
-                alt="Гора Эльбрус"
-                class="element__img"
-              />
-              <div class="element__bottom">
-                <h2 class="element__header">Гора Эльбрус</h2>
-                <button
-                  type="button"
-                  class="element__like-button"
-                  aria-label="Поставить лайк"
-                ></button>
-              </div>
-            </li>
-            <li class="element">
-              <img src="images/dombai.png" alt="Домбай" class="element__img" />
-              <div class="element__bottom">
-                <h2 class="element__header">Домбай</h2>
-                <button
-                  type="button"
-                  class="element__like-button"
-                  aria-label="Поставить лайк"
-                ></button>
-              </div>
-            </li>
-            <li class="element">
-              <img
-                src="images/karachaevsk.jpg"
-                alt="Карачаевск"
-                class="element__img"
-              />
-              <div class="element__bottom">
-                <h2 class="element__header">Карачаево-Черкессия</h2>
-                <button
-                  type="button"
-                  class="element__like-button"
-                  aria-label="Поставить лайк"
-                ></button>
-              </div>
-            </li>
-          </ul>
+          <ul class="elements-grid__container"></ul>
         </section>
       </main>
       <footer class="footer page__footer">
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
       </footer>
-      <div class="popup popup__edit-profile ">
+      <div class="popup popup__edit-profile">
         <div class="popup__container">
           <button
             type="button"
@@ -133,23 +50,25 @@
             aria-label="Закрыть форму"
           ></button>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <form name="popupEditProfile" class="popup__form">
+          <form id="popupEditProfile" class="popup__form">
             <input
-              name="popupNameProfile"
+              id="popupNameProfile"
               type="text"
               class="popup__input"
               placeholder="Имя пользователя"
+              required
             />
             <input
-              name="popupAboutUProfile"
+              id="popupAboutUProfile"
               type="text"
               class="popup__input"
               placeholder="О себе"
+              required
             />
             <button
               type="submit"
               class="popup__button-submit"
-              aria-label="Сохранить форму"
+              aria-label="Сохранить"
             >
               Сохранить
             </button>
@@ -164,23 +83,25 @@
             aria-label="Закрыть форму"
           ></button>
           <h2 class="popup__title">Новое место</h2>
-          <form name="popupEditProfile" class="popup__form">
+          <form id="popupAddPlace" class="popup__form">
             <input
-              name="popupNameProfile"
+              id="popupNamePic"
               type="text"
               class="popup__input"
               placeholder="Название"
+              required
             />
             <input
-              name="popupAboutUProfile"
+              id="popupUrlPic"
               type="text"
               class="popup__input"
               placeholder="Ссылка на картинку"
+              required
             />
             <button
               type="submit"
               class="popup__button-submit popup__button-ap"
-              aria-label="Сохранить форму"
+              aria-label="Создать"
             >
               Создать
             </button>
@@ -188,5 +109,28 @@
         </div>
       </div>
     </div>
+    <template class="template-element">
+      <li class="element">
+        <button
+          type="button"
+          class="element__delete-button"
+          aria-label="Удалить"
+        ></button>
+        <img
+          src="images/karachaevsk.jpg"
+          alt="Карачаевск"
+          class="element__img"
+        />
+        <div class="element__bottom">
+          <h2 class="element__header">Карачаевск</h2>
+          <button
+            type="button"
+            class="element__like-button"
+            aria-label="Поставить лайк"
+          ></button>
+        </div>
+      </li>
+    </template>
+    <script src="script.js"></script>
   </body>
 </html>

@@ -1,4 +1,5 @@
 .element {
+    position: relative;
     background-color: var(--color-white, #FFF);
     border-radius: 10px;
 }
