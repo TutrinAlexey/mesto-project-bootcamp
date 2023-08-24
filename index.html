@@ -125,7 +125,7 @@
       <footer class="footer page__footer">
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
       </footer>
-      <div class="popup popup_opened">
+      <div class="popup popup__edit-profile ">
         <div class="popup__container">
           <button
             type="button"
@@ -134,27 +134,56 @@
           ></button>
           <h2 class="popup__title">Редактировать профиль</h2>
           <form name="popupEditProfile" class="popup__form">
-            <fieldset class="popup__field">
-              <input
-                name="popupNameProfile"
-                type="text"
-                class="popup__input"
-                placeholder="Имя пользователя"
-              />
-              <input
-                name="popupAboutUProfile"
-                type="text"
-                class="popup__input"
-                placeholder="О себе"
-              />
-              <button
-                type="submit"
-                class="popup__button-submit"
-                aria-label="Сохранить форму"
-              >
-                Сохранить
-              </button>
-            </fieldset>
+            <input
+              name="popupNameProfile"
+              type="text"
+              class="popup__input"
+              placeholder="Имя пользователя"
+            />
+            <input
+              name="popupAboutUProfile"
+              type="text"
+              class="popup__input"
+              placeholder="О себе"
+            />
+            <button
+              type="submit"
+              class="popup__button-submit"
+              aria-label="Сохранить форму"
+            >
+              Сохранить
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="popup popup__add-place">
+        <div class="popup__container">
+          <button
+            type="button"
+            class="popup__button-close"
+            aria-label="Закрыть форму"
+          ></button>
+          <h2 class="popup__title">Новое место</h2>
+          <form name="popupEditProfile" class="popup__form">
+            <input
+              name="popupNameProfile"
+              type="text"
+              class="popup__input"
+              placeholder="Название"
+            />
+            <input
+              name="popupAboutUProfile"
+              type="text"
+              class="popup__input"
+              placeholder="Ссылка на картинку"
+            />
+            <button
+              type="submit"
+              class="popup__button-submit popup__button-ap"
+              aria-label="Сохранить форму"
+            >
+              Создать
+            </button>
           </form>
         </div>
       </div>
