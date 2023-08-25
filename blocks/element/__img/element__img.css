@@ -8,6 +8,6 @@
   filter: brightness(70%);
   z-index: 1;
 }
-.element__img:hover{
+.element__img:hover {
   cursor: pointer;
 }
