@@ -31,7 +31,6 @@ const element = templateElement.content.querySelector(".element");
 
 const profileName = document.querySelector(".profile__name");
 const profileAboutU = document.querySelector(".profile__about-you");
-
 const buttonEditProfile = document.querySelector(".profile__button-edit");
 const popupEditProfile = document.querySelector(".popup__edit-profile");
 const formPopupProfile = popupEditProfile.querySelector(".popup__form");
@@ -110,9 +109,11 @@ function handleAddPlaceForm(evt) {
   popupAddPlace.classList.remove("popup_opened");
 }
 
-buttonEditProfile.addEventListener("click", () =>
-  popupEditProfile.classList.add("popup_opened")
-);
+buttonEditProfile.addEventListener("click", () => {
+  popupEditProfile.classList.add("popup_opened");
+  nameInput.value = profileName.textContent;
+  aboutUInput.value = profileAboutU.textContent;
+});
 
 formPopupProfile.addEventListener("submit", handleProfileForm);
 
