@@ -1,30 +1,3 @@
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
 const elementsList = document.querySelector(".elements-grid__container");
 const templateElement = document.querySelector(".template-element");
 const element = templateElement.content.querySelector(".element");
@@ -49,13 +22,15 @@ const buttonCloseAddPlace = popupAddPlace.querySelector(".popup__button-close");
 
 const popupImage = document.querySelector(".popup__open-image");
 const buttonCloseImage = popupImage.querySelector(".popup__button-close");
+const imageLink = popupImage.querySelector(".popup__image");
+const imageCaption = popupImage.querySelector(".popup__caption");
 
-initialCards.forEach((el) => {
-  createElements(el.name, el.link);
-});
+function openPopup(el) {
+  el.classList.add("popup_opened");
+}
 
-function addElements(el) {
-  elementsList.prepend(el);
+function closePopup(el) {
+  el.classList.remove("popup_opened");
 }
 
 function addProfileInfo(name, about) {
@@ -71,11 +46,8 @@ function createElements(name, link) {
   const elementButtonDelete = newElement.querySelector(
     ".element__delete-button"
   );
-
   elementImage.addEventListener("click", () => {
-    popupImage.classList.add("popup_opened");
-    const imageLink = popupImage.querySelector(".popup__image");
-    const imageCaption = popupImage.querySelector(".popup__caption");
+    openPopup(popupImage);
     imageLink.src = link;
     imageLink.alt = name;
     imageCaption.textContent = name;
@@ -84,33 +56,40 @@ function createElements(name, link) {
   elementButtonLike.addEventListener("click", () =>
     elementButtonLike.classList.toggle("element__like-button_active")
   );
-
   elementName.textContent = name;
   elementImage.src = link;
   elementImage.alt = name;
-  addElements(newElement);
+  return newElement;
 }
+
+function addElements(el) {
+  elementsList.prepend(el);
+}
+
+initialCards.forEach((el) => {
+  addElements(createElements(el.name, el.link));
+});
 
 function handleProfileForm(evt) {
   evt.preventDefault();
   const name = nameInput.value;
   const about = aboutUInput.value;
   addProfileInfo(name, about);
-  popupEditProfile.classList.remove("popup_opened");
+  closePopup(popupEditProfile);
 }
 
 function handleAddPlaceForm(evt) {
   evt.preventDefault();
   const name = namePicInput.value;
   const link = urlPicInput.value;
-  createElements(name, link);
+  addElements(createElements(name, link));
   namePicInput.value = "";
   urlPicInput.value = "";
-  popupAddPlace.classList.remove("popup_opened");
+  closePopup(popupAddPlace);
 }
 
 buttonEditProfile.addEventListener("click", () => {
-  popupEditProfile.classList.add("popup_opened");
+  openPopup(popupEditProfile);
   nameInput.value = profileName.textContent;
   aboutUInput.value = profileAboutU.textContent;
 });
@@ -118,19 +97,13 @@ buttonEditProfile.addEventListener("click", () => {
 formPopupProfile.addEventListener("submit", handleProfileForm);
 
 buttonCloseEditProfile.addEventListener("click", () =>
-  popupEditProfile.classList.remove("popup_opened")
+  closePopup(popupEditProfile)
 );
 
-buttonAddPlace.addEventListener("click", () =>
-  popupAddPlace.classList.add("popup_opened")
-);
+buttonAddPlace.addEventListener("click", () => openPopup(popupAddPlace));
 
 formPopupAddPlace.addEventListener("submit", handleAddPlaceForm);
 
-buttonCloseAddPlace.addEventListener("click", () =>
-  popupAddPlace.classList.remove("popup_opened")
-);
+buttonCloseAddPlace.addEventListener("click", () => closePopup(popupAddPlace));
 
-buttonCloseImage.addEventListener("click", () =>
-  popupImage.classList.remove("popup_opened")
-);
+buttonCloseImage.addEventListener("click", () => closePopup(popupImage));
