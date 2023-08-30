@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="pages/index.css" />
+    <link rel="stylesheet" href="/pages/index.css">
     <title>Main Page</title>
   </head>
   <body class="body">
@@ -50,21 +50,29 @@
             aria-label="Закрыть форму"
           ></button>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <form id="popupEditProfile" class="popup__form">
+          <form id="editprofile" name="editprofile" class="popup__form" novalidate>
             <input
-              id="popupNameProfile"
+              id="username"
+              name="username"
               type="text"
               class="popup__input"
               placeholder="Имя пользователя"
+              minlength="2"
+              maxlength="40"
               required
             />
+            <span class="error_input-text" id="error-username"></span>
             <input
-              id="popupAboutUProfile"
+              id="aboutYou"
+              name="aboutYou"
               type="text"
               class="popup__input"
               placeholder="О себе"
+              minlength="2"
+              maxlength="200"
               required
             />
+            <span class="error_input-text" id="error-aboutYou"></span>
             <button
               type="submit"
               class="popup__button-submit"
@@ -83,21 +91,27 @@
             aria-label="Закрыть форму"
           ></button>
           <h2 class="popup__title">Новое место</h2>
-          <form id="popupAddPlace" class="popup__form">
+          <form id="addplace" name="addplace" class="popup__form" novalidate>
             <input
-              id="popupNamePic"
+              id="titlePic"
+              name="titlePic"
               type="text"
               class="popup__input"
               placeholder="Название"
+              minlength="2"
+              maxlength="30"
               required
             />
+            <span class="error_input-text" id="error-titlePic"></span>
             <input
-              id="popupUrlPic"
-              type="text"
+              id="urlPic"
+              name="urlPic"
+              type="url"
               class="popup__input"
               placeholder="Ссылка на картинку"
               required
             />
+            <span class="error_input-text" id="error-urlPic"></span>
             <button
               type="submit"
               class="popup__button-submit popup__button-ap"
@@ -142,7 +156,6 @@
         </div>
       </li>
     </template>
-    <script src="data.js"></script>
-    <script src="script.js"></script>
+    <script type="module" src="/scripts/index.js"></script>
   </body>
 </html>

@@ -18,6 +18,13 @@
   opacity: 0.8;
 }
 
+.popup__button-submit:disabled {
+  background-color: var(--color-white, #fff);
+  color: var(--color-black, #000);
+  border: 1px solid var(--color-black, #000);
+  cursor: default;
+}
+
 @media (max-width: 768px) {
   .popup__button-submit {
     padding: 14px 82px;
