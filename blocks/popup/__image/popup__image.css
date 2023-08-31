@@ -3,4 +3,5 @@
   width: 75vw;
   height: 75vh;
   object-fit: cover;
+  cursor: default;
 }

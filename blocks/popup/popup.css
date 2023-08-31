@@ -13,3 +13,7 @@
   transition: visibility 0.3s, opacity 0.3s linear;
   z-index: 3;
 }
+
+.popup:hover {
+  cursor: pointer;
+}

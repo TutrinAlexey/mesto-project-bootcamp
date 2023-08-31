@@ -35,6 +35,8 @@ const buttonCloseImage = popupImage.querySelector(".popup__button-close");
 const imageLink = popupImage.querySelector(".popup__image");
 const imageCaption = popupImage.querySelector(".popup__caption");
 
+const popupList = Array.from(document.querySelectorAll(".popup"));
+
 const errorListAddPlace = Array.from(
   popupAddPlace.querySelectorAll(".error_input-text")
 );
@@ -42,20 +44,24 @@ const errorListAddPlace = Array.from(
 const errorListEditProfile = Array.from(
   popupEditProfile.querySelectorAll(".error_input-text")
 );
-
+//Функция закрытия модального окна
 function openPopup(el) {
   el.classList.add("popup_opened");
+  document.addEventListener("keydown", closeOnEsc);
+  document.addEventListener("mousedown", closeOnOverlay);
 }
-
+//Функция открытия модального окна
 function closePopup(el) {
   el.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closeOnEsc);
+  document.removeEventListener("mousedown", closeOnOverlay);
 }
-
+//Функция добавления измененной информации в профиль
 function addProfileInfo(name, about) {
   profileName.textContent = name;
   profileAboutU.textContent = about;
 }
-
+//Функция создания карточки
 function createElements(name, link) {
   const newElement = element.cloneNode(true);
   const elementName = newElement.querySelector(".element__header");
@@ -79,7 +85,7 @@ function createElements(name, link) {
   elementImage.alt = name;
   return newElement;
 }
-
+//Функция добавления карточек на сайт
 function addElements(el) {
   elementsList.prepend(el);
 }
@@ -87,7 +93,7 @@ function addElements(el) {
 initialCards.forEach((el) => {
   addElements(createElements(el.name, el.link));
 });
-
+//Функция обработки формы редактирования профиля
 function handleProfileForm(evt) {
   evt.preventDefault();
   const name = nameInput.value;
@@ -95,7 +101,7 @@ function handleProfileForm(evt) {
   addProfileInfo(name, about);
   closePopup(popupEditProfile);
 }
-
+//Функция обработки формы добавления карточки
 function handleAddPlaceForm(evt) {
   evt.preventDefault();
   const name = namePicInput.value;
@@ -105,39 +111,81 @@ function handleAddPlaceForm(evt) {
   urlPicInput.value = "";
   closePopup(popupAddPlace);
 }
-
+//Функция удаления еррора валидации
 function hideErrors(errorList) {
   errorList.forEach((error) => (error.textContent = ""));
 }
 
+//Функция проверяет какое модальное окно открыто
+function checkClassPopup(popup) {
+  if (popup === popupEditProfile) {
+    closePopup(popupEditProfile);
+    hideErrors(errorListEditProfile);
+    nameInput.classList.remove(validateSettings.invalidInputClass);
+    aboutUInput.classList.remove(validateSettings.invalidInputClass);
+  } else if (popup === popupAddPlace) {
+    closePopup(popupAddPlace);
+    namePicInput.value = "";
+    urlPicInput.value = "";
+    namePicInput.classList.remove(validateSettings.invalidInputClass);
+    urlPicInput.classList.remove(validateSettings.invalidInputClass);
+    hideErrors(errorListAddPlace);
+  } else if (popup === popupImage) {
+    closePopup(popupImage);
+  }
+}
+
+//Функция закрытия модального окна по клавише ESC
+function closeOnEsc(evt) {
+  if (evt.key === "Escape") {
+    popupList.forEach((popupElement) => {
+      if (popupElement.classList.contains("popup_opened")) {
+        checkClassPopup(popupElement);
+      }
+    });
+  }
+}
+
+//Функция закрытия модального окна по нажатию вне формы
+function closeOnOverlay(evt) {
+  checkClassPopup(evt.target);
+}
+
+// Отправка формы Модального окна(редактировние профиля)
+formPopupProfile.addEventListener("submit", handleProfileForm);
+
+// Открытие Модального окна(редактировние профиля) по кнопке добавления
 buttonEditProfile.addEventListener("click", () => {
   openPopup(popupEditProfile);
   nameInput.value = profileName.textContent;
   aboutUInput.value = profileAboutU.textContent;
 });
 
-formPopupProfile.addEventListener("submit", handleProfileForm);
-
+// Закрытие Модального окна(редактировние профиля) по крестику
 buttonCloseEditProfile.addEventListener("click", () => {
   closePopup(popupEditProfile);
   hideErrors(errorListEditProfile);
-  nameInput.classList.remove("popup__input_invalid");
-  aboutUInput.classList.remove("popup__input_invalid");
+  nameInput.classList.remove(validateSettings.invalidInputClass);
+  aboutUInput.classList.remove(validateSettings.invalidInputClass);
 });
 
-buttonAddPlace.addEventListener("click", () => openPopup(popupAddPlace));
-
+// Отправка формы Модального окна(добавление карточек)
 formPopupAddPlace.addEventListener("submit", handleAddPlaceForm);
 
+// Открытие Модального окна(добавление карточек) по кнопке добавления
+buttonAddPlace.addEventListener("click", () => openPopup(popupAddPlace));
+
+// Закрытие Модального окна(добавление карточек) по крестику
 buttonCloseAddPlace.addEventListener("click", () => {
   closePopup(popupAddPlace);
   namePicInput.value = "";
   urlPicInput.value = "";
-  namePicInput.classList.remove("popup__input_invalid");
-  urlPicInput.classList.remove("popup__input_invalid");
+  namePicInput.classList.remove(validateSettings.invalidInputClass);
+  urlPicInput.classList.remove(validateSettings.invalidInputClass);
   hideErrors(errorListAddPlace);
 });
 
+// Закрытие Модального окна(Карточка на весь экран) по крестику
 buttonCloseImage.addEventListener("click", () => closePopup(popupImage));
 
 enableValidate(validateSettings);
