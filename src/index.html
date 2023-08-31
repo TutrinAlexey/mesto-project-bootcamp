@@ -3,21 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/pages/index.css">
     <title>Main Page</title>
   </head>
   <body class="body">
     <div class="page">
       <header class="header page__header">
         <img
-          src="images/header-logo.svg"
+          src="<%=require('./images/header-logo.svg')%>"
           alt="Логотип Места России"
           class="header__logo"
         />
       </header>
       <main class="content">
         <section class="profile">
-          <img src="images/avatar.png" alt="Аватарка" class="profile__avatar" />
+          <img src="<%=require('./images/avatar.png')%>" alt="Аватарка" class="profile__avatar" />
           <div class="profile__info">
             <div class="profile__container">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -130,8 +129,8 @@
           class="popup__button-close"
           aria-label="Закрыть форму"
         ></button>
-          <img src="images/dombai.png" alt="Домбай" class="popup__image">
-          <figcaption class="popup__caption">Домбай</figcaption>
+          <img src="" alt="" class="popup__image">
+          <figcaption class="popup__caption"></figcaption>
         </figure>
         </form>
     </div>
@@ -143,12 +142,12 @@
           aria-label="Удалить"
         ></button>
         <img
-          src="images/karachaevsk.jpg"
-          alt="Карачаевск"
+          src=""
+          alt=""
           class="element__img"
         />
         <div class="element__bottom">
-          <h2 class="element__header">Карачаевск</h2>
+          <h2 class="element__header"></h2>
           <button
             type="button"
             class="element__like-button"
@@ -157,6 +156,5 @@
         </div>
       </li>
     </template>
-    <script type="module" src="/scripts/index.js"></script>
   </body>
 </html>
