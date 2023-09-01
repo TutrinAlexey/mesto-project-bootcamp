@@ -40,12 +40,14 @@ function setEventListeners(formElement, settings) {
     formElement.querySelectorAll(settings.inputSelector)
   );
   const buttonElement = formElement.querySelector(settings.buttonSelector);
+  checkButton(inputList, buttonElement);
   inputList.forEach((inputElement) =>
     inputElement.addEventListener("input", () => {
       checkInput(inputElement, settings);
       checkButton(inputList, buttonElement);
     })
   );
+  formElement.addEventListener("reset", () => disableButton(buttonElement));
 }
 //Функция включения валидации
 export default function enableValidate(settings) {

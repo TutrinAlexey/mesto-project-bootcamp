@@ -17,7 +17,7 @@ function closeOnEsc(evt) {
   if (evt.key === "Escape") {
     popupList.forEach((popupElement) => {
       if (popupElement.classList.contains("popup_opened")) {
-        checkClassPopup(popupElement);
+        closePopup(popupElement);
       }
     });
   }
