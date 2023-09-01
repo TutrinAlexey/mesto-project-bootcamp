@@ -31,4 +31,4 @@ Mesto это интерактивная страница, на которой м
 
 **Ссылка на проект**
 
- [Ссылка ](https://tutrinalexey.github.io/mesto-project-bootcamp/dist/)
+ [Ссылка ](https://tutrinalexey.github.io/mesto-project-bootcamp/)
