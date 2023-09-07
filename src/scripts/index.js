@@ -136,8 +136,6 @@ formPopupAddPlace.addEventListener("submit", handleAddPlaceForm);
 // Открытие Модального окна(добавление карточек) по кнопке добавления
 buttonAddPlace.addEventListener("click", () => openPopup(popupAddPlace));
 
-enableValidate(validateSettings);
-
 // Отправка формы Модального окна(изменение аватарки)
 formPopupAvatar.addEventListener("submit", handleAvatarForm);
 
@@ -148,3 +146,5 @@ closeButtons.forEach((button) => {
   const popup = button.closest(".popup");
   button.addEventListener("click", () => closePopup(popup));
 });
+
+enableValidate(validateSettings);
