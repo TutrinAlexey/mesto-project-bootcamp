@@ -1,6 +1,6 @@
 .popup__button-submit {
   padding: 14px 132px 18px 130px;
-  margin-top: 45px;
+  margin-top: 15px;
   color: var(--color-white, #fff);
   background-color: var(--color-black, #000);
   border: 0;
@@ -28,7 +28,6 @@
 @media (max-width: 768px) {
   .popup__button-submit {
     padding: 14px 82px;
-    margin-top: 45px;
     font-size: 14px;
   }
 }

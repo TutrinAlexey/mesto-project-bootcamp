@@ -1,4 +1,4 @@
-import { popupAddPlace, popupEditProfile, popupImage, popupList,  checkClassPopup} from "./index.js";
+import {popupList,  checkClassPopup} from "./index.js";
 
 //Функция закрытия модального окна
 export function openPopup(el) {
@@ -17,7 +17,7 @@ function closeOnEsc(evt) {
   if (evt.key === "Escape") {
     popupList.forEach((popupElement) => {
       if (popupElement.classList.contains("popup_opened")) {
-        closePopup(popupElement);
+        closePopup(popupElement)
       }
     });
   }

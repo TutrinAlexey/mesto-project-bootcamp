@@ -1,0 +1,12 @@
+.profile__avatar-overlay {
+  position: absolute;
+  left: 47px;
+  top: 47px;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+}
+.profile__img:hover .profile__avatar-overlay {
+  opacity: 1;
+  cursor: pointer;
+}
