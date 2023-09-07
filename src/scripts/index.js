@@ -27,9 +27,6 @@ const aboutUInput = formPopupProfile.querySelector("#aboutYou");
 const submitEditProfile = formPopupProfile.querySelector(
   ".popup__button-submit"
 );
-const buttonCloseEditProfile = popupEditProfile.querySelector(
-  ".popup__button-close"
-);
 
 const buttonAddPlace = document.querySelector(".profile__button-add");
 export const popupAddPlace = document.querySelector(".popup__add-place");
@@ -37,10 +34,8 @@ const formPopupAddPlace = popupAddPlace.querySelector(".popup__form");
 const namePicInput = formPopupAddPlace.querySelector("#titlePic");
 const urlPicInput = formPopupAddPlace.querySelector("#urlPic");
 const submitAddPlace = formPopupAddPlace.querySelector(".popup__button-submit");
-const buttonCloseAddPlace = popupAddPlace.querySelector(".popup__button-close");
 
 export const popupImage = document.querySelector(".popup__open-image");
-const buttonCloseImage = popupImage.querySelector(".popup__button-close");
 export const imageLink = popupImage.querySelector(".popup__image");
 export const imageCaption = popupImage.querySelector(".popup__caption");
 export const popupList = Array.from(document.querySelectorAll(".popup"));
@@ -48,7 +43,6 @@ export const popupList = Array.from(document.querySelectorAll(".popup"));
 const profileAvatar = document.querySelector(".profile__avatar");
 const buttonEditAvatar = document.querySelector(".profile__img");
 const popupAvatar = document.querySelector(".popup__edit-avatar");
-const buttonCloseAvatar = popupAvatar.querySelector(".popup__button-close");
 const formPopupAvatar = popupAvatar.querySelector(".popup__form");
 const urlAvataInput = formPopupAvatar.querySelector("#urlAvatar");
 const submitAvatar = formPopupAvatar.querySelector(".popup__button-submit");
