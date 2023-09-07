@@ -1,4 +1,4 @@
-import "./../pages/index.css"
+import "./../pages/index.css";
 
 import { initialCards } from "./data.js";
 import createElements from "./card.js";
@@ -45,9 +45,15 @@ export const imageLink = popupImage.querySelector(".popup__image");
 export const imageCaption = popupImage.querySelector(".popup__caption");
 export const popupList = Array.from(document.querySelectorAll(".popup"));
 
-const errorListAddPlace = Array.from(
-  popupAddPlace.querySelectorAll(".error_input-text")
-);
+const profileAvatar = document.querySelector(".profile__avatar");
+const buttonEditAvatar = document.querySelector(".profile__img");
+const popupAvatar = document.querySelector(".popup__edit-avatar");
+const buttonCloseAvatar = popupAvatar.querySelector(".popup__button-close");
+const formPopupAvatar = popupAvatar.querySelector(".popup__form");
+const urlAvataInput = formPopupAvatar.querySelector("#urlAvatar");
+const submitAvatar = formPopupAvatar.querySelector(".popup__button-submit");
+
+const closeButtons = document.querySelectorAll(".popup__button-close");
 
 const errorListEditProfile = Array.from(
   popupEditProfile.querySelectorAll(".error_input-text")
@@ -58,7 +64,10 @@ function addProfileInfo(name, about) {
   profileName.textContent = name;
   profileAboutU.textContent = about;
 }
-
+//Функция изменеия автарки профиля
+function addAvatar(link) {
+  profileAvatar.src = link;
+}
 //Добавление стартовых карточек
 initialCards.forEach((el) => {
   addElements(createElements(el.name, el.link));
@@ -77,10 +86,18 @@ function handleAddPlaceForm(evt) {
   const name = namePicInput.value;
   const link = urlPicInput.value;
   addElements(createElements(name, link));
-  namePicInput.value = "";
-  urlPicInput.value = "";
+  evt.target.reset();
   closePopup(popupAddPlace);
   submitAddPlace.disabled = true;
+}
+//Функция обработки формы добавления карточки
+function handleAvatarForm(evt) {
+  evt.preventDefault();
+  const link = urlAvataInput.value;
+  addAvatar(link);
+  evt.target.reset();
+  closePopup(popupAvatar);
+  submitAvatar.disabled = true;
 }
 //Функция удаления еррора валидации
 function hideErrors(errorList) {
@@ -90,20 +107,12 @@ function hideErrors(errorList) {
 export function checkClassPopup(popup) {
   if (popup === popupEditProfile) {
     closePopup(popupEditProfile);
-    hideErrors(errorListEditProfile);
-    nameInput.classList.remove(validateSettings.invalidInputClass);
-    aboutUInput.classList.remove(validateSettings.invalidInputClass);
-    submitEditProfile.disabled = false;
   } else if (popup === popupAddPlace) {
     closePopup(popupAddPlace);
-    namePicInput.value = "";
-    urlPicInput.value = "";
-    namePicInput.classList.remove(validateSettings.invalidInputClass);
-    urlPicInput.classList.remove(validateSettings.invalidInputClass);
-    submitAddPlace.disabled = true;
-    hideErrors(errorListAddPlace);
   } else if (popup === popupImage) {
     closePopup(popupImage);
+  } else if (popup === popupAvatar) {
+    closePopup(popupAvatar);
   }
 }
 
@@ -115,11 +124,6 @@ buttonEditProfile.addEventListener("click", () => {
   openPopup(popupEditProfile);
   nameInput.value = profileName.textContent;
   aboutUInput.value = profileAboutU.textContent;
-});
-
-// Закрытие Модального окна(редактировние профиля) по крестику
-buttonCloseEditProfile.addEventListener("click", () => {
-  closePopup(popupEditProfile);
   hideErrors(errorListEditProfile);
   nameInput.classList.remove(validateSettings.invalidInputClass);
   aboutUInput.classList.remove(validateSettings.invalidInputClass);
@@ -132,18 +136,15 @@ formPopupAddPlace.addEventListener("submit", handleAddPlaceForm);
 // Открытие Модального окна(добавление карточек) по кнопке добавления
 buttonAddPlace.addEventListener("click", () => openPopup(popupAddPlace));
 
-// Закрытие Модального окна(добавление карточек) по крестику
-buttonCloseAddPlace.addEventListener("click", () => {
-  closePopup(popupAddPlace);
-  namePicInput.value = "";
-  urlPicInput.value = "";
-  namePicInput.classList.remove(validateSettings.invalidInputClass);
-  urlPicInput.classList.remove(validateSettings.invalidInputClass);
-  submitAddPlace.disabled = true;
-  hideErrors(errorListAddPlace);
-});
-
-// Закрытие Модального окна(Карточка на весь экран) по крестику
-buttonCloseImage.addEventListener("click", () => closePopup(popupImage));
-
 enableValidate(validateSettings);
+
+// Отправка формы Модального окна(изменение аватарки)
+formPopupAvatar.addEventListener("submit", handleAvatarForm);
+
+// Открытие Модального окна(изменение аватарки) по нажаитю на аватарку
+buttonEditAvatar.addEventListener("click", () => openPopup(popupAvatar));
+
+closeButtons.forEach((button) => {
+  const popup = button.closest(".popup");
+  button.addEventListener("click", () => closePopup(popup));
+});

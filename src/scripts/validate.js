@@ -40,6 +40,8 @@ function setEventListeners(formElement, settings) {
     formElement.querySelectorAll(settings.inputSelector)
   );
   const buttonElement = formElement.querySelector(settings.buttonSelector);
+  checkButton(inputList, buttonElement)
+  formElement.addEventListener('reset', () => disableButton(buttonElement))
   inputList.forEach((inputElement) =>
     inputElement.addEventListener("input", () => {
       checkInput(inputElement, settings);
