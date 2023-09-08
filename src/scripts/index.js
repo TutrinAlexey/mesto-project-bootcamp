@@ -5,6 +5,12 @@ import createElements from "./card.js";
 import { addElements } from "./utils.js";
 import { closePopup, openPopup } from "./modal.js";
 import enableValidate from "./validate.js";
+import {
+  getInitialCards,
+  getUserProfile,
+  addNewCard,
+  saveUserProfile,
+} from "./api";
 
 const validateSettings = {
   formSelector: ".popup__form",
@@ -54,9 +60,9 @@ const errorListEditProfile = Array.from(
 );
 
 //Функция добавления измененной информации в профиль
-function addProfileInfo(name, about) {
-  profileName.textContent = name;
-  profileAboutU.textContent = about;
+function addProfileInfo(res) {
+  profileName.textContent = res.name;
+  profileAboutU.textContent = res.about;
 }
 //Функция изменеия автарки профиля
 function addAvatar(link) {
@@ -69,20 +75,34 @@ initialCards.forEach((el) => {
 //Функция обработки формы редактирования профиля
 function handleProfileForm(evt) {
   evt.preventDefault();
-  const name = nameInput.value;
-  const about = aboutUInput.value;
-  addProfileInfo(name, about);
-  closePopup(popupEditProfile);
+  const userInfo = {
+    name: nameInput.value,
+    about: aboutUInput.value,
+  }
+  saveUserProfile(userInfo)
+    .then((res) => {
+      addProfileInfo(res);
+      closePopup(popupEditProfile);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 //Функция обработки формы добавления карточки
 function handleAddPlaceForm(evt) {
   evt.preventDefault();
   const name = namePicInput.value;
   const link = urlPicInput.value;
-  addElements(createElements(name, link));
-  evt.target.reset();
-  closePopup(popupAddPlace);
-  submitAddPlace.disabled = true;
+  addNewCard(name, link)
+    .then((res) => {
+      addElements(createElements(res.name, res.link));
+      evt.target.reset();
+      closePopup(popupAddPlace);
+      submitAddPlace.disabled = true;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 //Функция обработки формы добавления карточки
 function handleAvatarForm(evt) {
@@ -142,3 +162,22 @@ closeButtons.forEach((button) => {
 });
 
 enableValidate(validateSettings);
+
+getInitialCards()
+  .then((res) => {
+    res.forEach((el) => {
+      const newCard = createElements(el.name, el.link);
+      addElements(newCard);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+getUserProfile()
+  .then((res) => {
+    addProfileInfo(res);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
