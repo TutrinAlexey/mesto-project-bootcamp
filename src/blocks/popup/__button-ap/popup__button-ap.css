@@ -1,9 +1,0 @@
-.popup__button-ap {
-  padding: 14px 143px 18px 141px;
-}
-
-@media (max-width: 768px) {
-  .popup__button-ap {
-    padding: 14px 82px;
-  }
-}

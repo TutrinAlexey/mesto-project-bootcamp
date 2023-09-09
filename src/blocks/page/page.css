@@ -1,9 +1,0 @@
-.page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: "Inter", Arial, sans-serif;
-  max-width: 1280px;
-  margin: 0 auto;
-  position: relative;
-}
