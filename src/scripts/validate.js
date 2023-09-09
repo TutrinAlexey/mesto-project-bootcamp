@@ -48,7 +48,6 @@ function setEventListeners(formElement, settings) {
       checkButton(inputList, buttonElement);
     })
   );
-  formElement.addEventListener("reset", () => disableButton(buttonElement));
 }
 //Функция включения валидации
 export default function enableValidate(settings) {

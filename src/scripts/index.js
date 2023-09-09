@@ -166,11 +166,9 @@ enableValidate(validateSettings);
 
 Promise.all([getUserProfile(), getInitialCards()])
   .then(([userData, cards]) => {
-    console.log(userData);
     userId = userData._id;
     addProfileInfo(userData);
     addAvatar(userData);
-    console.log(cards);
     cards.forEach((el) => {
       const newCard = createElements(el);
       addElements(newCard);
