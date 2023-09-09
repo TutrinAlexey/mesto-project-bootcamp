@@ -1,4 +1,5 @@
-import {popupList,  checkClassPopup} from "./index.js";
+import { popupList } from "./constants.js";
+import {checkClassPopup} from "./index.js";
 
 //Функция закрытия модального окна
 export function openPopup(el) {

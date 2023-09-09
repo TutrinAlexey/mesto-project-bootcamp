@@ -27,13 +27,13 @@ export function getInitialCards() {
   }).then(checkResponse);
 }
 
-export function addNewCard(name, link) {
+export function addNewCard(dataCard) {
   return fetch(`${config.baseUrl}/cards`, {
     headers: config.headers,
     method: "POST",
     body: JSON.stringify({
-      name: name,
-      link: link,
+      name: dataCard.name,
+      link: dataCard.link,
     }),
   }).then(checkResponse);
 }

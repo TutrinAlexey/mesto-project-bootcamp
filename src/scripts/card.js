@@ -1,14 +1,16 @@
 import { deleteCard, deleteLike, putLike } from "./api.js";
-import {
-  element,
-  imageLink,
-  imageCaption,
-  popupImage,
-  checkOwnerOfCard,
-  userId,
-} from "./index.js";
+import { element, imageCaption, imageLink, popupImage } from "./constants.js";
+import { userId } from "./index.js";
+
 import { openPopup } from "./modal.js";
 
+
+//Функция проверки кто добавил карточку
+function checkOwnerOfCard(el, button) {
+  if (el.owner._id === userId) {
+    button.classList.remove("delete-button_disable");
+  }
+}
 //Функция создания карточки
 export default function createElements(el) {
   const newElement = element.cloneNode(true);
