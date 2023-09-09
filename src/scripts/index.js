@@ -29,8 +29,6 @@ import {
   profileAboutU,
   profileAvatar,
   profileName,
-  submitAddPlace,
-  submitAvatar,
   submitEditProfile,
   urlAvataInput,
   urlPicInput,
