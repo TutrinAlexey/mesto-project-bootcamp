@@ -11,6 +11,7 @@
 
 @media (max-width: 768px) {
   .error_input-text {
-    max-width: 239px;
+    max-width: 222px;
+    min-height: 45px;
   }
 }

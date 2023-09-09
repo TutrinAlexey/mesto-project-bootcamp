@@ -29,5 +29,6 @@
   .popup__button-submit {
     padding: 14px 82px;
     font-size: 14px;
+    margin-top: 0;
   }
 }
