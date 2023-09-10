@@ -1,5 +1,4 @@
 import { popupList } from "./constants.js";
-import {checkClassPopup} from "./index.js";
 
 //Функция закрытия модального окна
 export function openPopup(el) {
@@ -28,3 +27,9 @@ function closeOnOverlay(evt) {
   checkClassPopup(evt.target);
 }
 
+//Функция проверяет какое модальное окно открыто
+function checkClassPopup(popup) {
+  if (popup.classList.contains("popup")) {
+    closePopup(popup);
+  }
+}

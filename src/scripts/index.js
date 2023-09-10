@@ -2,9 +2,13 @@ import "./../pages/index.css";
 
 // import { initialCards } from "./data.js";
 import createElements from "./card.js";
-import { addElements, loadingProcess } from "./utils.js";
+import { addElements, handleSubmit } from "./utils.js";
 import { closePopup, openPopup } from "./modal.js";
-import enableValidate from "./validate.js";
+import {
+  enableButton,
+  enableValidate,
+  removeInputError,
+} from "./validate.js";
 import {
   getInitialCards,
   getUserProfile,
@@ -42,34 +46,7 @@ export let userId = "";
 const errorListEditProfile = Array.from(
   popupEditProfile.querySelectorAll(".error_input-text")
 );
-//Функция обработки текста кнопки submit при загрузке
-function renderLoading(
-  isLoading,
-  button,
-  buttonText = "Сохранить",
-  loadingText = "Сохранение..."
-) {
-  if (isLoading) {
-    button.textContent = loadingText;
-  } else {
-    button.textContent = buttonText;
-  }
-}
-//Универсальная функция по созданию обработчиков форм
-function handleSubmit(request, evt, loadingText = "Сохранение...") {
-  evt.preventDefault();
-  const submitButton = evt.submitter;
-  const buttonText = submitButton.textContent;
-  renderLoading(true, submitButton, buttonText, loadingText);
-  request()
-    .then(() => {
-      evt.target.reset();
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(() => renderLoading(false, submitButton, buttonText));
-}
+
 //Функция добавления измененной информации в профиль
 function addProfileInfo(res) {
   profileName.textContent = res.name;
@@ -86,13 +63,13 @@ function handleProfileForm(evt) {
     name: nameInput.value,
     about: aboutUInput.value,
   };
-  function profileRequest() {
+  function makeRequest() {
     return updateUserProfile(userInfo).then((res) => {
       addProfileInfo(res);
       closePopup(popupEditProfile);
     });
   }
-  handleSubmit(profileRequest, evt);
+  handleSubmit(makeRequest, evt);
 }
 
 //Функция обработки формы добавления карточки
@@ -101,48 +78,37 @@ function handleAddPlaceForm(evt) {
     name: namePicInput.value,
     link: urlPicInput.value,
   };
-  function cardRequest() {
+  function makeRequest() {
     return addNewCard(dataCard).then((res) => {
       addElements(createElements(res));
       closePopup(popupAddPlace);
     });
   }
-  handleSubmit(cardRequest, evt, "Создание...");
+  handleSubmit(makeRequest, evt, "Создание...");
 }
 //Функция обработки формы добавления карточки
 function handleAvatarForm(evt) {
   const link = urlAvataInput.value;
-  function avatarRequest() {
+  function makeRequest() {
     return updateAvatar(link).then((res) => {
       addAvatar(res);
       closePopup(popupAvatar);
     });
   }
-  handleSubmit(avatarRequest, evt);
-}
-//Функция удаления еррора валидации
-function hideErrors(errorList) {
-  errorList.forEach((error) => (error.textContent = ""));
-}
-//Функция проверяет какое модальное окно открыто
-export function checkClassPopup(popup) {
-  if (popup.classList.contains("popup")) {
-    closePopup(popup);
-  }
+  handleSubmit(makeRequest, evt);
 }
 
 // Отправка формы Модального окна(редактировние профиля)
 formPopupProfile.addEventListener("submit", handleProfileForm);
 
-// Открытие Модального окна(редактировние профиля) по кнопке добавления
+// Открытие Модального окна(редактировние профиля) по кнопке редактирования
 buttonEditProfile.addEventListener("click", () => {
   openPopup(popupEditProfile);
   nameInput.value = profileName.textContent;
   aboutUInput.value = profileAboutU.textContent;
-  hideErrors(errorListEditProfile);
-  nameInput.classList.remove(validateSettings.invalidInputClass);
-  aboutUInput.classList.remove(validateSettings.invalidInputClass);
-  submitEditProfile.disabled = false;
+  removeInputError(nameInput, validateSettings);
+  removeInputError(aboutUInput, validateSettings);
+  enableButton(submitEditProfile);
 });
 
 // Отправка формы Модального окна(добавление карточек)

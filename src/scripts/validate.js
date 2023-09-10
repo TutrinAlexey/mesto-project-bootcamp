@@ -6,7 +6,7 @@ function addInputError(inputElement, errorMessage, settings) {
   inputElement.classList.add(settings.invalidInputClass);
 }
 //Функция удаления ошибки после волидации
-function removeInputError(inputElement, settings) {
+export function removeInputError(inputElement, settings) {
   const errorId = "error-" + inputElement.id;
   const errorElement = document.getElementById(errorId);
   errorElement.textContent = "";
@@ -21,7 +21,7 @@ function checkInput(inputElement, settings) {
   }
 }
 //Функция включения кнопки
-function enableButton(buttonElement) {
+export function enableButton(buttonElement) {
   buttonElement.disabled = false;
 }
 //Функция отключения кнопки
@@ -50,7 +50,7 @@ function setEventListeners(formElement, settings) {
   );
 }
 //Функция включения валидации
-export default function enableValidate(settings) {
+export function enableValidate(settings) {
   const formList = Array.from(document.querySelectorAll(settings.formSelector));
   formList.forEach((formElement) => {
     formElement.addEventListener("submit", (evt) => evt.preventDefault());
@@ -65,3 +65,8 @@ function checkButton(inputList, buttonElement) {
     enableButton(buttonElement);
   }
 }
+
+//Функция удаления еррора валидации
+// export function hideErrors(errorList) {
+//   errorList.forEach((error) => (error.textContent = ""));
+// }
