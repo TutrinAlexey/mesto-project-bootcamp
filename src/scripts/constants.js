@@ -53,3 +53,7 @@ export const submitAvatar = formPopupAvatar.querySelector(
 
 //Список кнопок закрывающих попап
 export const closeButtons = document.querySelectorAll(".popup__button-close");
+
+//Попап подтверждения удаления карточек
+export const popupConfirm = document.querySelector(".popup__confirm");
+export const fomrPopupConfirm = document.forms["confirm"];

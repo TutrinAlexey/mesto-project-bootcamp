@@ -1,9 +1,19 @@
+import e from "express";
 import { deleteCard, deleteLike, putLike } from "./api.js";
-import { element, imageCaption, imageLink, popupImage } from "./constants.js";
+import {
+  element,
+  fomrPopupConfirm,
+  imageCaption,
+  imageLink,
+  popupConfirm,
+  popupImage,
+} from "./constants.js";
 import { userId } from "./index.js";
 
-import { openPopup } from "./modal.js";
+import { closePopup, openPopup } from "./modal.js";
 
+let cardDelete;
+// let cardDeleteId;
 
 //Функция проверки кто добавил карточку
 function checkOwnerOfCard(el, button) {
@@ -51,13 +61,9 @@ export default function createElements(el) {
   });
 
   //Слушатель на удаление карточки при клике
-  elementButtonDelete.addEventListener("click", () => {
-    deleteCard(el._id)
-      .then(() => newElement.remove())
-      .catch((err) => {
-        console.log(err);
-      });
-  });
+  elementButtonDelete.addEventListener("click", () => openPopup(popupConfirm));
+
+  fomrPopupConfirm.addEventListener('submit', handleConfirmForm)
 
   elementButtonLike.addEventListener("click", () => {
     if (elementButtonLike.classList.contains("element__like-button_active")) {
@@ -88,4 +94,18 @@ export default function createElements(el) {
   elementImage.alt = el.name;
   elementCountLikes.textContent = el.likes.length;
   return newElement;
+
+  function handleConfirmForm(evt) {
+    evt.preventDefault();
+    cardDelete = newElement;
+    cardDelete.id = el._id;
+    deleteCard(cardDelete.id)
+    .then(() => {
+      cardDelete.remove()
+      closePopup(popupConfirm)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
 }

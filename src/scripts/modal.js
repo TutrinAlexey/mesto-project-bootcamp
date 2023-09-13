@@ -1,4 +1,4 @@
-import { popupList } from "./constants.js";
+import { cardDelete, popupList } from "./constants.js";
 import {checkClassPopup} from "./index.js";
 
 //Функция закрытия модального окна
@@ -16,11 +16,7 @@ export function closePopup(el) {
 //Функция закрытия модального окна по клавише ESC
 function closeOnEsc(evt) {
   if (evt.key === "Escape") {
-    popupList.forEach((popupElement) => {
-      if (popupElement.classList.contains("popup_opened")) {
-        closePopup(popupElement)
-      }
-    });
+    popupList.forEach((popupElement) => closePopup(popupElement));
   }
 }
 //Функция закрытия модального окна по нажатию вне формы
