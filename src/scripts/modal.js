@@ -1,9 +1,11 @@
-import { cardDelete, popupList } from "./constants.js";
-import {checkClassPopup} from "./index.js";
+import { handleConfirmForm } from "./card.js";
+import { formPopupConfirm, popupList } from "./constants.js";
+import { checkClassPopup } from "./index.js";
 
 //Функция закрытия модального окна
 export function openPopup(el) {
   el.classList.add("popup_opened");
+  formPopupConfirm.removeEventListener("submit", handleConfirmForm);
   document.addEventListener("keydown", closeOnEsc);
   document.addEventListener("mousedown", closeOnOverlay);
 }
@@ -23,4 +25,3 @@ function closeOnEsc(evt) {
 function closeOnOverlay(evt) {
   checkClassPopup(evt.target);
 }
-

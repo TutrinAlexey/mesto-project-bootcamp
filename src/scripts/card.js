@@ -1,8 +1,7 @@
-import e from "express";
 import { deleteCard, deleteLike, putLike } from "./api.js";
 import {
   element,
-  fomrPopupConfirm,
+  formPopupConfirm,
   imageCaption,
   imageLink,
   popupConfirm,
@@ -13,7 +12,7 @@ import { userId } from "./index.js";
 import { closePopup, openPopup } from "./modal.js";
 
 let cardDelete;
-// let cardDeleteId;
+let cardId;
 
 //Функция проверки кто добавил карточку
 function checkOwnerOfCard(el, button) {
@@ -60,11 +59,6 @@ export default function createElements(el) {
     imageCaption.textContent = el.name;
   });
 
-  //Слушатель на удаление карточки при клике
-  elementButtonDelete.addEventListener("click", () => openPopup(popupConfirm));
-
-  fomrPopupConfirm.addEventListener('submit', handleConfirmForm)
-
   elementButtonLike.addEventListener("click", () => {
     if (elementButtonLike.classList.contains("element__like-button_active")) {
       deleteLike(el._id, el.likes)
@@ -87,6 +81,14 @@ export default function createElements(el) {
     }
   });
 
+  //Слушатель на удаление карточки при клике
+  elementButtonDelete.addEventListener("click", () => {
+    cardDelete = newElement;
+    cardId = el._id;
+    openPopup(popupConfirm);
+    formPopupConfirm.addEventListener("submit", handleConfirmForm);
+  });
+
   checkOwnerOfLike();
   checkOwnerOfCard(el, elementButtonDelete);
   elementName.textContent = el.name;
@@ -94,18 +96,17 @@ export default function createElements(el) {
   elementImage.alt = el.name;
   elementCountLikes.textContent = el.likes.length;
   return newElement;
+}
 
-  function handleConfirmForm(evt) {
-    evt.preventDefault();
-    cardDelete = newElement;
-    cardDelete.id = el._id;
-    deleteCard(cardDelete.id)
+//Функция обработки Попапа подтверждения
+export function handleConfirmForm(evt) {
+  evt.preventDefault();
+  deleteCard(cardId)
     .then(() => {
-      cardDelete.remove()
-      closePopup(popupConfirm)
+      cardDelete.remove();
+      closePopup(popupConfirm);
     })
     .catch((err) => {
       console.log(err);
     });
-  }
 }
